@@ -1102,7 +1102,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, 0, -17.6 }
+#define NOZZLE_TO_PROBE_OFFSET { 0, 0, -16.2 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1509,7 +1509,7 @@
 #endif
 
 // Delta only homes to Z
-#define HOMING_FEEDRATE_Z  (200*60)
+#define HOMING_FEEDRATE_Z  (100*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
