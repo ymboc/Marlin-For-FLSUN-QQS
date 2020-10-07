@@ -24,8 +24,7 @@
 /**
  * MKS Robin mini (STM32F130VET6) board pin assignments
  */
-
-#ifndef __STM32F1__
+#if NOT_TARGET(STM32F1, STM32F1xx)
   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
 #elif HOTENDS > 1 || E_STEPPERS > 1
   #error "MKS Robin mini only supports 1 hotend / E-stepper. Comment out this line to continue."
@@ -126,6 +125,7 @@
 #define SDIO_SUPPORT
 #define SDIO_CLOCK                       4500000  // 4.5 MHz
 #define SD_DETECT_PIN                       PD12
+#define ONBOARD_SPI_DEVICE                     1  // SPI1
 #define ONBOARD_SD_CS_PIN                   PC11
 
 //
@@ -201,6 +201,17 @@
   #define TOUCH_SCK_PIN                     PB13  // SPI2_SCK
   #define TOUCH_MISO_PIN                    PB14  // SPI2_MISO
   #define TOUCH_MOSI_PIN                    PB15  // SPI2_MOSI
+
+  #define TFT_DRIVER                     ILI9341
+  #define TFT_BUFFER_SIZE                  14400
+
+
+  // YV for normal screen mounting
+  #define ILI9341_ORIENTATION  ILI9341_MADCTL_MY | ILI9341_MADCTL_MV
+  // XV for 180° rotated screen mounting
+  //#define ILI9341_ORIENTATION  ILI9341_MADCTL_MX | ILI9341_MADCTL_MV
+
+  #define ILI9341_COLOR_RGB
 #endif
 
 #define HAS_SPI_FLASH                          1

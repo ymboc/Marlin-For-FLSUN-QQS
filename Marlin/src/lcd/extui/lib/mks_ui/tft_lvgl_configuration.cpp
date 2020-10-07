@@ -41,13 +41,14 @@
 #include "draw_ui.h"
 #include "SPIFlashStorage.h"
 #include <lvgl.h>
+#include <strings.h>
 
 #include "../../../../MarlinCore.h"
 #include "../../../../inc/MarlinConfig.h"
 
 #include HAL_PATH(../../HAL, tft/xpt2046.h)
 #include "../../../ultralcd.h"
-XPT2046 touch;
+XPT2046 touchpad;
 
 #if ENABLED(POWER_LOSS_RECOVERY)
   #include "../../../../feature/powerloss.h"
@@ -426,7 +427,8 @@ void SysTick_Callback() {
       #ifdef LCD_USE_DMA_FSMC
         LCD_IO_WriteSequence((uint16_t *)bmp_public_buf, TFT_WIDTH);
       #else
-        int index = 0;,x_off = 0;
+        int index = 0;
+        int x_off = 0;
         for (x_off = 0; x_off < TFT_WIDTH; x_off++) {
           LCD_IO_WriteData((uint16_t)bmp_public_buf[index]);
           index += 2;
@@ -461,7 +463,7 @@ void tft_lvgl_init() {
   #endif
   mks_test_get();
 
-  touch.Init();
+  touchpad.Init();
 
   lv_init();
 
@@ -592,7 +594,7 @@ unsigned int getTickDiff(unsigned int curTick, unsigned int lastTick) {
 }
 
 static bool get_point(int16_t *x, int16_t *y) {
-  bool is_touched = touch.getRawPoint(x, y);
+  bool is_touched = touchpad.getRawPoint(x, y);
 
   if (is_touched) {
     *x = int16_t((int32_t(*x) * XPT2046_X_CALIBRATION) >> 16) + XPT2046_X_OFFSET;
