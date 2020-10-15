@@ -86,7 +86,7 @@
 #define MOTOR_CURRENT_PWM_E_PIN             PB0
 #define MOTOR_CURRENT_PWM_RANGE             1500  // (255 * (1000mA / 65535)) * 257 = 1000 is equal 1.6v Vref in turn equal 1Amp
 #ifndef DEFAULT_PWM_MOTOR_CURRENT
-  #define DEFAULT_PWM_MOTOR_CURRENT { 800, 800, 800 }
+  #define DEFAULT_PWM_MOTOR_CURRENT { 800, 800, 800 } 
 #endif
 //
 // Temperature Sensors
@@ -111,7 +111,7 @@
 #define SERVO0_PIN                          PA8   // Enable BLTOUCH support on IO0 (WIFI connector)
 
 #define MT_DET_1_PIN                        PA4
-#define MT_DET_PIN_INVERTING               false
+#define MT_DET_PIN_INVERTING                false
 
 #define WIFI_IO0_PIN                        PC13
 
@@ -133,6 +133,27 @@
 //
 #define BEEPER_PIN                          PC5
 
+// UART
+#if HAS_TMC_UART
+
+    #define X_SERIAL_TX_PIN                   PA9 // TC-MAX31855  CS pin 
+    #define X_SERIAL_RX_PIN                   X_SERIAL_TX_PIN
+
+    #define Y_SERIAL_TX_PIN                   X_SERIAL_TX_PIN
+    #define Y_SERIAL_RX_PIN                   X_SERIAL_TX_PIN
+
+    #define Z_SERIAL_TX_PIN                   X_SERIAL_TX_PIN
+    #define Z_SERIAL_RX_PIN                   X_SERIAL_TX_PIN
+
+    #define E0_SERIAL_TX_PIN                  X_SERIAL_TX_PIN // wifi PA5 pin
+    #define E0_SERIAL_RX_PIN                  E0_SERIAL_TX_PIN
+
+  // Reduce baud rate for software serial reliability
+  //#if HAS_TMC_SW_SERIAL
+  #define TMC_BAUD_RATE 19200
+  //#endif
+
+#endif
 /**
  * Note: MKS Robin TFT screens use various TFT controllers.
  * If the screen stays white, disable 'LCD_RESET_PIN'
@@ -148,9 +169,9 @@
   #define FSMC_CS_PIN                       PD7   // NE4
   #define FSMC_RS_PIN                       PD11  // A0
 
-  #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
+  #define LCD_USE_DMA_FSMC                  // Use DMA transfers to send data to the TFT
   #define FSMC_DMA_DEV                      DMA2
-  #define FSMC_DMA_CHANNEL               DMA_CH5
+  #define FSMC_DMA_CHANNEL                  DMA_CH5
 
   #define LCD_RESET_PIN                     PC6   // FSMC_RST
   #define LCD_BACKLIGHT_PIN                 PD13
