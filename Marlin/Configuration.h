@@ -2323,6 +2323,7 @@
 // TFT display with optional touch screen
 // Color Marlin UI with standard menu system
 //
+#define TFT_320x240
 //#define TFT_320x240_SPI
 //#define TFT_480x320
 //#define TFT_480x320_SPI
