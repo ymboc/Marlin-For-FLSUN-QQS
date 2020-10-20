@@ -498,6 +498,11 @@ class Temperature {
         static void report_fan_speed(const uint8_t target);
       #endif
 
+      #if ENABLED(PROBING_FANS_ON)
+        static bool fans_set_for_probing;
+        static uint8_t saved_pre_probing_fan_speed[FAN_COUNT];
+      #endif
+
       #if EITHER(PROBING_FANS_OFF, ADVANCED_PAUSE_FANS_PAUSE)
         static bool fans_paused;
         static uint8_t saved_fan_speed[FAN_COUNT];
@@ -519,6 +524,10 @@ class Temperature {
       #if ENABLED(EXTRA_FAN_SPEED)
         static uint8_t old_fan_speed[FAN_COUNT], new_fan_speed[FAN_COUNT];
         static void set_temp_fan_speed(const uint8_t fan, const uint16_t tmp_temp);
+      #endif
+
+      #if ENABLED(PROBING_FANS_ON)
+        void set_fans_for_probing(const bool p);
       #endif
 
       #if EITHER(PROBING_FANS_OFF, ADVANCED_PAUSE_FANS_PAUSE)

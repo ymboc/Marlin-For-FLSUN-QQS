@@ -197,6 +197,12 @@ const char str_t_thermal_runaway[] PROGMEM = STR_T_THERMAL_RUNAWAY,
     uint8_t Temperature::saved_fan_speed[FAN_COUNT]; // = { 0 }
   #endif
 
+
+  #if ENABLED(PROBING_FANS_ON)
+    bool Temperature::fans_set_for_probing; // = false;
+    uint8_t Temperature::saved_pre_probing_fan_speed[FAN_COUNT]; // = { 0 }
+  #endif
+
   #if ENABLED(ADAPTIVE_FAN_SLOWING)
     uint8_t Temperature::fan_speed_scaler[FAN_COUNT] = ARRAY_N(FAN_COUNT, 128, 128, 128, 128, 128, 128, 128, 128);
   #endif
@@ -244,6 +250,20 @@ const char str_t_thermal_runaway[] PROGMEM = STR_T_THERMAL_RUNAWAY,
           FANS_LOOP(i) { saved_fan_speed[i] = fan_speed[i]; fan_speed[i] = 0; }
         else
           FANS_LOOP(i) fan_speed[i] = saved_fan_speed[i];
+      }
+    }
+
+  #endif
+
+  #if ENABLED(PROBING_FANS_ON)
+
+    void Temperature::set_fans_for_probing(const bool p) {
+      if (p != fans_set_for_probing) {
+        fans_set_for_probing = p;
+        if (p)
+          FANS_LOOP(i) { saved_pre_probing_fan_speed[i] = fan_speed[i]; fan_speed[i] = 255U; }
+        else
+          FANS_LOOP(i) fan_speed[i] = saved_pre_probing_fan_speed[i];
       }
     }
 

@@ -451,6 +451,8 @@ bool Probe::probe_down_to_z(const float z, const feedRate_t fr_mm_s) {
     endstops.enable(true);
   #endif
 
+  TERN_(PROBING_FANS_ON, thermalManager.set_fans_for_probing(true));
+
   TERN_(QUIET_PROBING, set_probing_paused(true));
 
   // Move down until the probe is triggered
@@ -464,6 +466,8 @@ bool Probe::probe_down_to_z(const float z, const feedRate_t fr_mm_s) {
       TEST(endstops.trigger_state(), TERN(Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN, Z_MIN, Z_MIN_PROBE))
     #endif
   ;
+
+  TERN_(PROBING_FANS_ON, thermalManager.set_fans_for_probing(false));
 
   TERN_(QUIET_PROBING, set_probing_paused(false));
 
