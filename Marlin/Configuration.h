@@ -265,7 +265,7 @@
  *
  * Parking for CoreXY / HBot kinematics.
  * Toolheads are parked at one edge and held with an electromagnet.
- * Supports more than 2 Toolheads. See https://youtu.be/JolbsAKTKf4
+ * Supports more than 2 Toolheads. See https://youtu.be/JolbsAKT-4
  */
 //#define ELECTROMAGNETIC_SWITCHING_TOOLHEAD
 
@@ -605,8 +605,8 @@
  */
 
 #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
-#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+//#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
+//#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
 
 //===========================================================================
 //============================= Mechanical Settings =========================
@@ -667,17 +667,17 @@
   #define DELTA_DIAGONAL_ROD 280.0        // (mm)
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 357.68             // (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 357.75             // (mm) Get this value from G33 auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { -0.27, 0.0, -0.06 } // Get these values from G33 auto calibrate
+  #define DELTA_ENDSTOP_ADJ { -0.11, 0.0, -0.42 } // Get these values from G33 auto calibrate
 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
-  #define DELTA_RADIUS 141.23              // (mm) Get this value from G33 auto calibrate
+  #define DELTA_RADIUS 141.00              // (mm) Get this value from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { -.04, +.05, -.01 } // Get these values from G33 auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { -.18, +.37, -.19 } // Get these values from G33 auto calibrate
 
   // Delta radius and diagonal rod adjustments (mm)
   //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }

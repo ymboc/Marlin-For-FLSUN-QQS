@@ -413,7 +413,7 @@
 // When first starting the main fan, run it at full speed for the
 // given number of milliseconds.  This gets the fan spinning reliably
 // before setting a PWM value. (Does not work with software PWM for fan on Sanguinololu)
-//#define FAN_KICKSTART_TIME 100
+#define FAN_KICKSTART_TIME 100
 
 // Some coolers may require a non-zero "off" state.
 //#define FAN_OFF_PWM  1
@@ -427,7 +427,7 @@
  * to ensure that the fan has enough power to spin, or to run lower
  * current fans with higher current. (e.g., 5V/12V fans with 12V/24V)
  * Value 0 always turns off the fan.
- *
+ * 
  * Define one or both of these to override the default 0-255 range.
  */
 //#define FAN_MIN_PWM 50
