@@ -109,6 +109,8 @@
 //
 // Drivers
 //
+#define SOFTWARE_SERIAL
+
 #if HAS_TMC220x
 
   #if ENABLED(HARDWARE_SERIAL)  /*  TMC2209 */
@@ -131,18 +133,19 @@
      * TMC2208 stepper UART-configurable by PDN_UART pin
      * Software serial
      */
-    #define X_SLAVE_ADDRESS                    0
-    #define Y_SLAVE_ADDRESS                    0
-    #define Z_SLAVE_ADDRESS                    0
+    #define X_SLAVE_ADDRESS                    0  // |  |  :
+    #define Y_SLAVE_ADDRESS                    1  // :  |  :
+    #define Z_SLAVE_ADDRESS                    2  // |  :  :
+    #define E0_SLAVE_ADDRESS                   3  // :  :  :
 
-    #define X_SERIAL_TX_PIN                 PA10  // RXD1
-    #define X_SERIAL_RX_PIN                 PA10  // RXD1
+    #define X_SERIAL_TX_PIN                 PA9   // TXD1
+    #define X_SERIAL_RX_PIN                 X_SERIAL_TX_PIN  
 
-    #define Y_SERIAL_TX_PIN                 PA9   // TXD1
-    #define Y_SERIAL_RX_PIN                 PA9   // TXD1
+    #define Y_SERIAL_TX_PIN                 X_SERIAL_TX_PIN
+    #define Y_SERIAL_RX_PIN                 Y_SERIAL_TX_PIN
 
-    #define Z_SERIAL_TX_PIN                 PC7   // IO1
-    #define Z_SERIAL_RX_PIN                 PC7   // IO1
+    #define Z_SERIAL_TX_PIN                 X_SERIAL_TX_PIN
+    #define Z_SERIAL_RX_PIN                 Z_SERIAL_TX_PIN 
 
   #endif
   // Reduce baud rate to improve software serial reliability
@@ -182,10 +185,10 @@
 // EXTRUDER
 //
 #if AXIS_DRIVER_TYPE(E0,TMC2208)||AXIS_DRIVER_TYPE(E0,TMC2209)
-  #define E0_SLAVE_ADDRESS                     0
+  #define E0_SLAVE_ADDRESS                     3
 
-  #define E0_SERIAL_TX_PIN                  PA8   // IO0
-  #define E0_SERIAL_RX_PIN                  PA8   // IO0
+  #define E0_SERIAL_TX_PIN                  X_SERIAL_TX_PIN  
+  #define E0_SERIAL_RX_PIN                  E0_SERIAL_TX_PIN 
   #define TMC_BAUD_RATE                    19200
 #else
   // Motor current PWM pins
