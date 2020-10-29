@@ -556,7 +556,7 @@
   //#define DEFAULT_bedKd 1675.16
 
   // FLSUN QQ-S stock 1.6mm aluminium heater with 4mm lattice glass
-#define DEFAULT_bedKp 119.65
+#define DEFAULT_bedKp 120
 #define DEFAULT_bedKi 23.32
 #define DEFAULT_bedKd 409.23
 
@@ -1633,6 +1633,12 @@
 #define PREHEAT_2_TEMP_HOTEND 230
 #define PREHEAT_2_TEMP_BED    80
 #define PREHEAT_2_FAN_SPEED   0 // Value from 0 to 255
+
+#define PREHEAT_3_LABEL       "ABS"
+#define PREHEAT_3_TEMP_HOTEND 240
+#define PREHEAT_3_TEMP_BED    90
+#define PREHEAT_3_FAN_SPEED   0 // Value from 0 to 255
+
 
 /**
  * Nozzle Park
