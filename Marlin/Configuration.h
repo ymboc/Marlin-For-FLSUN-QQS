@@ -446,7 +446,7 @@
 #ifdef kendric
   #define TEMP_SENSOR_0 147
 #else
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #endif
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
@@ -731,18 +731,18 @@
     #define DELTA_DIAGONAL_ROD 280.0        //280 (mm)
 
     // Horizontal distance bridged by diagonal push rods when effector is centered.
-    #define DELTA_RADIUS 140.8               //140.8 (mm) Get this value from G33 auto calibrate
+    #define DELTA_RADIUS 141.0495               //140.8 (mm) Get this value from G33 auto calibrate
   #endif
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 370            //370 E3D 360 (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 357.9012            //370 E3D 360 (mm) Get this value from G33 auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+  #define DELTA_ENDSTOP_ADJ { 0.0, -0.356, -.1862 } // Get these values from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { -.0699, 0.2908, -.2210 } // Get these values from G33 auto calibrate
 
   // Delta radius and diagonal rod adjustments (mm)
   #define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 } //OPT

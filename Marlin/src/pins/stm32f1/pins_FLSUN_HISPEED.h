@@ -133,17 +133,17 @@
     */
     // The 4xTMC2209 module doesn't have a serial multiplexer and
     // needs to set *_SLAVE_ADDRESS in Configuration_adv.h for X,Y,Z,E0
-    #define  X_SLAVE_ADDRESS 3    // |  |  :
-    #define  Y_SLAVE_ADDRESS 2    // :  |  :
-    #define  Z_SLAVE_ADDRESS 1    // |  :  :
-    //#define E0_SLAVE_ADDRESS 0    // :  :  :
+    #define  X_SLAVE_ADDRESS 0    // :  :  :
+    #define  Y_SLAVE_ADDRESS 1    // |  :  :
+    #define  Z_SLAVE_ADDRESS 2    // :  |  :
+    #define E0_SLAVE_ADDRESS 3    // |  |  :
 
-    #define X_SERIAL_TX_PIN                  PA8  // IO0
-    #define X_SERIAL_RX_PIN                  PA8  // IO0
-    #define Y_SERIAL_TX_PIN                  PA8  // IO0
-    #define Y_SERIAL_RX_PIN                  PA8  // IO0
-    #define Z_SERIAL_TX_PIN                  PA8  // IO0
-    #define Z_SERIAL_RX_PIN                  PA8  // IO0
+    #define X_SERIAL_TX_PIN                  PA9 // TXD1
+    #define X_SERIAL_RX_PIN                  X_SERIAL_TX_PIN
+    #define Y_SERIAL_TX_PIN                  X_SERIAL_TX_PIN
+    #define Y_SERIAL_RX_PIN                  X_SERIAL_TX_PIN
+    #define Z_SERIAL_TX_PIN                  X_SERIAL_TX_PIN
+    #define Z_SERIAL_RX_PIN                  X_SERIAL_TX_PIN
     #ifdef ESP_WIFI
       //Module ESP-WIFI
       #define ESP_WIFI_MODULE_COM               2
@@ -204,8 +204,8 @@
 // EXTRUDER
 //
 #if AXIS_DRIVER_TYPE_E0(TMC2208) || AXIS_DRIVER_TYPE_E0(TMC2209)
-  #define E0_SERIAL_TX_PIN                  PA8   // IO0
-  #define E0_SERIAL_RX_PIN                  PA8   // IO0
+  #define E0_SERIAL_TX_PIN                  X_SERIAL_TX_PIN   // IO0
+  #define E0_SERIAL_RX_PIN                  X_SERIAL_TX_PIN   // IO0
   #define TMC_BAUD_RATE                   19200
 #else
   // Motor current PWM pins
