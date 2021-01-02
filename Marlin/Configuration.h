@@ -428,7 +428,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -512,10 +512,14 @@
     #define DEFAULT_Ki_LIST {   3.38,   3.38 }
     #define DEFAULT_Kd_LIST {  58.69,  58.69 }
   #else
+    // ymboc's FLSUNQQ-S, 240C Insulated Dragon Hotend with 100% part cooling
+    #define DEFAULT_Kp  19.53
+    #define DEFAULT_Ki   1.26
+    #define DEFAULT_Kd  75.92    
     // FLSUN QQ-S, 200 C with 100% part cooling
-    #define DEFAULT_Kp  28.16
-    #define DEFAULT_Ki   3.38
-    #define DEFAULT_Kd  58.69
+    //#define DEFAULT_Kp  28.16
+    //#define DEFAULT_Ki   3.38
+    //#define DEFAULT_Kd  58.69
     // FLSUN QQS-Pro, PET 235 C with 70% part cooling
     //M301 P21.67 I1.25 D93.81        PLA
     //M301 P21.6708 I1.2515 D93.8127  PET
@@ -698,18 +702,22 @@
     #define DELTA_DIAGONAL_ROD 280.0        //280 (mm)
 
     // Horizontal distance bridged by diagonal push rods when effector is centered.
-    #define DELTA_RADIUS 140.8               //140.8 (mm) Get this value from G33 auto calibrate
+    #define DELTA_RADIUS 141.04//140.8               //140.8 (mm) Get this value from G33 auto calibrate
   #endif
 
-  // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 370.0                 //370 E3D-360 (mm) Get this value from G33 auto calibrate
+  // Distance between bed and nozzle Z home position *** No! - Read below: 
+  // Distance between bed and nozzle Z home position plus the 'Z Probe Offset Value'
+  #define DELTA_HEIGHT 357.72                 // DragonHotend 'value' 357.85; True Height: 378.45
+                                              
+                                              
+                                             
 
-  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+  #define DELTA_ENDSTOP_ADJ { 0.0, -0.12, -0.37 } // Get these values from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { -.13, +.32, -.20 } // Get these values from G33 auto calibrate
 
   // Delta radius and diagonal rod adjustments (mm)
   #define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
@@ -1157,11 +1165,11 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, 0, -16.2 }  //OPT (Stock 16.2) (E3Dv6 -14.1)
+#define NOZZLE_TO_PROBE_OFFSET { 0, 0, -20.6 }  //OPT (Stock 16.2) (E3Dv6 -14.1)
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 20
+#define PROBING_MARGIN 2
 
 // X and Y axis travel speed (mm/min) between probes 
 //#define XY_PROBE_SPEED (16*60)    // 960KLP
@@ -1215,7 +1223,7 @@
  * A total of 3 or more adds more slow probes, taking the average.
  */
 #define MULTIPLE_PROBING 2
-//#define EXTRA_PROBING    1
+#define EXTRA_PROBING    1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1765,7 +1773,7 @@
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-  //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
 
 //

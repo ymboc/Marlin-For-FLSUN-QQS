@@ -16,12 +16,12 @@
 #define STOCK                       // env = hispeed (Default)
 
 /*------Drivers-(1 CHOICE)-----*/
-#define QQS                        //(S) For 4xA4988(green or red color) (Default)
+//#define QQS                        //(S) For 4xA4988(green or red color) (Default)
 //#define QQS_TMC                    //(8) For 4xTMC220x_STANDALONE For 2208(white color) or 2209(black color)
 
 /* MODE UART XYZ */
 //#define QQS_UARTx                  //(U8/U9) 4xTMC220x Note: For 2209 change TMC2208 by TMC2209 at the bottom file and remove on your printer the module WIFI.
-//#define QQS_UART9                  //(UH) Mode special 2209 wiring with one I/O pin (Remove module ESP12)
+#define QQS_UART9                  //(UH) Mode special 2209 wiring with one I/O pin (Remove module ESP12)
 
 /**===============================================================
  * -- If you have an other stepper driver for EXTRUDER----------//
@@ -37,7 +37,7 @@
 //#define TFT_CLASSIC_UI             //(F) UI STANDARD 
 
 /*----  Modules -----*/
-#define ESP_WIFI                   //(W) Module ESP8266/ESP12 (Default)
+//#define ESP_WIFI                   //(W) Module ESP8266/ESP12 (Default)
 /*For LedStrip which need an external power source on Vcc pin.*/
 //#define NEOPIXEL_LED               //(N) Use port GPIO Wifi module (PC7)
 
@@ -49,10 +49,10 @@
  * = Default eStep (T=397)/(B=417)/(b=141)==================
  * =========================================================
  */
-//#define INV_EXT                    // Uncommment to reverse direction for BMG/BMGmini.
+#define INV_EXT                    // Uncommment to reverse direction for BMG/BMGmini.
 
 // BMG Extruder (B) Extruder step(417).
-//#define EXTRUDER_STEPS 417         //(B) Uncommment for BMG Left/Right.
+#define EXTRUDER_STEPS 417         //(B) Uncommment for BMG Left/Right.
 
 // BMG Mini (b) Extruder step(141).
 //#define EXTRUDER_STEPS 141         //(b) Uncommment for BMG mini.
@@ -65,7 +65,7 @@
  */
 #define AUTO_BED_LEVELING_UBL      //(U) (Default)
 //#define AUTO_BED_LEVELING_BILINEAR //(A)
-//#define PREHEAT_BEFORE_LEVELING     // Run a preHeat bed at 50°C
+#define PREHEAT_BEFORE_LEVELING     // Run a preHeat bed at 50°C
 
 //Many options for Modules: 
 #define LIN_ADVANCE                //(L) For TMC_UART prefer mode spreadCycle(by TFT menu) (Default)         
@@ -98,7 +98,7 @@
 //#define LEVEL_BED_CORNERS
 
 // Option for Octoprint (OCTO)
-//#define HOST_ACTION_COMMANDS       // Action Command Prompt support Message on Octoprint
+#define HOST_ACTION_COMMANDS       // Action Command Prompt support Message on Octoprint
 //#define CANCEL_OBJECTS
 
 /* OPTION no validate */
@@ -177,3 +177,6 @@
       #define DRIVER_EXT TMC2209
     #endif
 #endif
+
+// Further Amendments by ymboc
+#define BINARY_FILE_TRANSFER
