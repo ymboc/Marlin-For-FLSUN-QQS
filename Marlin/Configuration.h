@@ -563,12 +563,6 @@
   //#define MIN_BED_POWER 0
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
-  // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  //#define DEFAULT_bedKp 10.00
-  //#define DEFAULT_bedKi .023
-  //#define DEFAULT_bedKd 305.4
-
   // FLSUN QQS-Pro 1.6mm aluminium heater with 4mm lattice glass
   #define DEFAULT_bedKp 82.98
   #define DEFAULT_bedKi 15.93
@@ -660,7 +654,9 @@
   #define DELTA_SEGMENTS_PER_SECOND 80  //200
 
   // After homing move down to a height where XY movement is unconstrained
-  //#define DELTA_HOME_TO_SAFE_ZONE
+  #ifdef XP
+    #define DELTA_HOME_TO_SAFE_ZONE
+  #endif
 
   // Delta calibration menu
   // uncomment to add three points calibration menu option.
@@ -1036,11 +1032,6 @@
 //#define BLTOUCH
 
 /**
- * Pressure sensor with a BLTouch-like interface
- */
-//#define CREALITY_TOUCH
-
-/**
  * Touch-MI Probe by hotends.fr
  *
  * This probe is deployed and activated by moving the X-axis to a magnet at the edge of the bed.
@@ -1172,13 +1163,12 @@
 #define PROBING_MARGIN 2
 
 // X and Y axis travel speed (mm/min) between probes 
-//#define XY_PROBE_SPEED (16*60)    // 960KLP
+//#define XY_PROBE_SPEED (16*60)    // 960
 #define XY_PROBE_SPEED  (66*60) //3000
 //#define XY_PROBE_SPEED  (30*60) //4020
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 //FEEDRATE_Z
-//#define Z_PROBE_SPEED_FAST (30*60)   //1800 => /3 KLP
 //#define Z_PROBE_SPEED_FAST (50*60)  //3000
 #define Z_PROBE_SPEED_FAST (30*60)  //1800
 //#define Z_PROBE_SPEED_FAST (100*60)  //6000
@@ -2678,10 +2668,11 @@
   #define TOUCH_CALIBRATION_Y -9047
   #define TOUCH_OFFSET_X        -30
   #define TOUCH_OFFSET_Y        254
-  //#define XPT2046_X_CALIBRATION   12033
-  //#define XPT2046_Y_CALIBRATION  -9047
-  //#define XPT2046_X_OFFSET       -301
-  //#define XPT2046_Y_OFFSET        254
+  //#define TOUCH_CALIBRATION_X 12316
+  //#define TOUCH_CALIBRATION_Y -8981
+  //#define TOUCH_OFFSET_X        -43
+  //#define TOUCH_OFFSET_Y        257
+  //#define TOUCH_ORIENTATION   TOUCH_LANDSCAPE
   #if ENABLED(TFT_COLOR_UI)
     //#define SINGLE_TOUCH_NAVIGATION
   #endif
